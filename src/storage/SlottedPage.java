@@ -322,7 +322,9 @@ public class SlottedPage implements Iterable<Object> {
 			//System.out.println("So call compact() "); 
 			compact();  //
 			if (freeSpaceSize() < b.length + Integer.BYTES) // throw error 
-				throw new OverflowException();
+				{
+				    throw new OverflowException();
+				}
 		}
 		
 		int location = startOfDataStorage() - b.length;
