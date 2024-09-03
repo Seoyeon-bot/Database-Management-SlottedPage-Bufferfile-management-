@@ -1,5 +1,6 @@
 package storage;
 
+import static io.github.pixee.security.ObjectInputFilters.createSafeObjectInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -460,7 +461,7 @@ public class SlottedPage implements Iterable<Object> {
 		try {
 			if (b == null)
 				return null;
-			return new ObjectInputStream(new ByteArrayInputStream(b, offset, b.length - offset)).readObject();
+			return createSafeObjectInputStream(new ByteArrayInputStream(b, offset, b.length - offset)).readObject();
 		} catch (IOException e) {
 			throw e;
 		} catch (Exception e) {
