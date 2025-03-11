@@ -1,5 +1,6 @@
 package storage.test;
 
+import static io.github.pixee.security.ObjectInputFilters.createSafeObjectInputStream;
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayInputStream;
@@ -181,7 +182,7 @@ public class SlottedPageTest {
 		try {
 			if (b == null)
 				return null;
-			return new ObjectInputStream(new ByteArrayInputStream(b, offset, b.length - offset)).readObject();
+			return createSafeObjectInputStream(new ByteArrayInputStream(b, offset, b.length - offset)).readObject();
 		} catch (IOException e) {
 			throw e;
 		} catch (Exception e) {
